@@ -17,11 +17,7 @@ class User < ActiveRecord::Base
                                      foreign_key: "followed_id",
                                      dependent:   :destroy
   has_many :follower_users, through: :follower_relationships, source: :follower 
-  #ユーザー名による絞り込み
   
-  scope :get_by_name, ->(name) {
-      where('name like ?', "%#{name}%") if name.present?
-  }
   
   #他のユーザーをフォローする
   def follow(other_user)
