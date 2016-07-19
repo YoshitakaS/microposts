@@ -4,9 +4,10 @@ class UsersController < ApplicationController
   before_action :correct_user , only:[:edit,:update]
   
   def index
-    @users = User.paginate(page: params[:page])
     if params[:name].present?
       @users = @users.get_by_name params[:name]
+    else
+      @users = User.paginate(page: params[:page])
     end
   end
   

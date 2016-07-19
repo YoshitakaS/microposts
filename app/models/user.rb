@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   has_many :follower_users, through: :follower_relationships, source: :follower 
   #ユーザー名による絞り込み
   scope :get_by_name, ->(name) {
-      where("name like ?", "%#{name}%")
+      where("name like?", "%#{name}%")
   }
   #他のユーザーをフォローする
   def follow(other_user)
