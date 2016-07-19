@@ -17,7 +17,10 @@ class User < ActiveRecord::Base
                                      foreign_key: "followed_id",
                                      dependent:   :destroy
   has_many :follower_users, through: :follower_relationships, source: :follower 
-  
+  #ユーザー名による絞り込み
+  scope :get_by_name, ->(name) {
+      where("name like ?", "%#{name}%")
+  }
   #他のユーザーをフォローする
   def follow(other_user)
    following_relationships.find_or_create_by(followed_id: other_user.id)
@@ -33,8 +36,6 @@ class User < ActiveRecord::Base
   def following?(other_user)
    following_users.include?(other_user)
   end
-  
-  
   
   def feed_items
     Micropost.where(user_id: following_user_ids + [self.id])

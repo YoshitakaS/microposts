@@ -2,7 +2,12 @@
 <h1>All users</h1>
 
 <%= will_paginate %>
-
+<div>
+<%= form_tag(users_path, method: “get”) do %>
+<%= label_tag :name, “名前” %><%= text_field_tag :name, params[:name] %>
+<%= submit_tag “検索” %>
+<% end %>
+</div>
 <ul class="users">
     <%= render @users %>
 </ul>
