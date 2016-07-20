@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
                                      foreign_key: "followed_id",
                                      dependent:   :destroy
   has_many :follower_users, through: :follower_relationships, source: :follower 
-  
+  self.per_page = 10
   
   #他のユーザーをフォローする
   def follow(other_user)
