@@ -33,6 +33,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 # auto linking
 gem 'rails_autolink'
+#️add fake data
+gem 'faker',                '1.4.2'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
